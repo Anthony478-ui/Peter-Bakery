@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Our Menu - Peter's Bakery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4af37;
+            --secondary: #8B4513;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            background-color: #fefefe;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .text-primary {
+            color: var(--primary) !important;
+        }
+        
+        .bg-primary {
+            background-color: var(--primary) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .navbar {
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+        
+        .navbar-dark {
+            background-color: rgba(0, 0, 0, 0.9) !important;
+        }
+        
+        .navbar-brand h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+        
+        .menu-categories {
+            background-color: var(--light);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .category-btn {
+            border: none;
+            background: transparent;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .menu-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            background: white;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .menu-item-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .menu-item-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .badge-custom {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .order-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .order-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .special-offer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 0;
+            margin: 60px 0;
+            border-radius: 10px;
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer h5 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: var(--primary);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #aaa;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 100px 0 60px;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <h1 class="text-primary m-0">Peter's Bakery</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="display-3 mb-4">Explore Our Menu</h1>
+            <p class="lead">Discover our delicious selection of freshly baked goods, made with passion and the finest ingredients</p>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-categories">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center">
+                <button class="category-btn active" data-category="all">All Items</button>
+                <button class="category-btn" data-category="bread">Breads</button>
+                <button class="category-btn" data-category="pastry">Pastries</button>
+                <button class="category-btn" data-category="cake">Cakes</button>
+                <button class="category-btn" data-category="cookie">Cookies</button>
+                <button class="category-btn" data-category="special">Specialties</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Items -->
+    <section class="menu-items py-5">
+        <div class="container">
+            <div class="row" id="menu-container">
+                <!-- Bread Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="bread">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sourdough Bread">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Artisan Sourdough</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$6.50</span>
+                            <span class="badge badge-custom">Popular</span>
+                        </div>
+                        <p class="menu-item-description">Our signature sourdough with a crispy crust and soft, tangy interior. Made with a 50-year-old starter.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="bread">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Whole Grain Bread">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Multigrain Loaf</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$7.25</span>
+                        </div>
+                        <p class="menu-item-description">Hearty whole grain bread packed with seeds and nuts. Perfect for sandwiches or toast.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="bread">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1608190003443-86ab6a3b4f5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Baguette">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">French Baguette</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$4.50</span>
+                        </div>
+                        <p class="menu-item-description">Classic French baguette with a crisp crust and soft, airy interior. Baked fresh multiple times daily.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <!-- Pastry Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="pastry">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1555507036-ab794f27d2e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Croissants">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Butter Croissants</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$3.75</span>
+                            <span class="badge badge-custom">Best Seller</span>
+                        </div>
+                        <p class="menu-item-description">Flaky, buttery croissants made with European butter and traditional folding techniques.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="pastry">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Danish Pastry">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Fruit Danish</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$4.25</span>
+                        </div>
+                        <p class="menu-item-description">Delicate pastry filled with cream cheese and topped with seasonal fruits.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="pastry">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cinnamon Rolls">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Cinnamon Rolls</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$4.95</span>
+                        </div>
+                        <p class="menu-item-description">Soft, fluffy cinnamon rolls with cream cheese frosting. Perfect with morning coffee.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <!-- Cake Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="cake">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chocolate Cake">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Decadent Chocolate</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$38.00</span>
+                            <span class="badge badge-custom">Popular</span>
+                        </div>
+                        <p class="menu-item-description">Rich, moist chocolate cake with chocolate ganache. Available in 6", 8", and 10" sizes.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="cake">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1586788680434-30d8b2f0466d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Carrot Cake">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Classic Carrot Cake</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$35.00</span>
+                        </div>
+                        <p class="menu-item-description">Moist carrot cake with walnuts, pineapple, and cream cheese frosting.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="cake">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Red Velvet Cake">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Red Velvet</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$42.00</span>
+                        </div>
+                        <p class="menu-item-description">Classic red velvet cake with cream cheese frosting and decorative piping.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <!-- Cookie Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="cookie">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chocolate Chip Cookies">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Chocolate Chip</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$2.50</span>
+                            <span class="badge badge-custom">Best Seller</span>
+                        </div>
+                        <p class="menu-item-description">Our famous chocolate chip cookies with crispy edges and soft centers.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="cookie">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Oatmeal Raisin Cookies">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Oatmeal Raisin</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$2.25</span>
+                        </div>
+                        <p class="menu-item-description">Hearty oatmeal cookies with plump raisins and a hint of cinnamon.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="cookie">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47bc843?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Macarons">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">French Macarons</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$12.00</span>
+                        </div>
+                        <p class="menu-item-description">Delicate almond macarons in assorted flavors. Box of 6 pieces.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <!-- Special Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="special">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kisera">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Traditional Kisera</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$15.00 - $85.00</span>
+                            <span class="badge badge-custom">Specialty</span>
+                        </div>
+                        <p class="menu-item-description">Authentic South Sudanese flatbread made with fermented sorghum flour using traditional techniques.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="special">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Honey Cake">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Honey Cake</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$8.00 - $25.00</span>
+                        </div>
+                        <p class="menu-item-description">Moist cake sweetened with natural honey for a warm, complex flavor.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="special">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Seasonal Special">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Seasonal Fruit Tart</h3>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="menu-item-price">$6.50</span>
+                            <span class="badge badge-custom">Seasonal</span>
+                        </div>
+                        <p class="menu-item-description">Buttery tart shell filled with pastry cream and topped with fresh seasonal fruits.</p>
+                        <button class="order-btn">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="special-offer">
+        <div class="container text-center">
+            <h2 class="display-5 mb-4">Special Offer: Baker's Dozen</h2>
+            <p class="lead mb-4">Buy 12 of any cookie or pastry and get the 13th one free!</p>
+            <button class="btn btn-light btn-lg">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5>Peter's Bakery</h5>
+                    <p>Baking with passion since 1998. We create delicious baked goods using time-honored recipes and the finest ingredients.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Main Street, Anytown, USA</li>
+                        <li><i class="fas fa-phone me-2"></i> +012 345 6789</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@petersbakery.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Bakery Hours</h5>
+                    <ul class="list-unstyled">
+                        <li>Monday - Friday: 6:00 AM - 8:00 PM</li>
+                        <li>Saturday: 7:00 AM - 7:00 PM</li>
+                        <li>Sunday: 7:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Peter's Bakery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Category filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show/hide menu items based on category
+                    menuItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Add to order buttons
+            const orderButtons = document.querySelectorAll('.order-btn');
+            orderButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemName = this.closest('.menu-item').querySelector('.menu-item-title').textContent;
+                    alert(`Added ${itemName} to your order!`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
